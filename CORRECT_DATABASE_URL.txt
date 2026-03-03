@@ -1,0 +1,49 @@
+🔧 CORRECT DATABASE_URL FORMAT
+================================
+
+❌ WRONG (what you have now):
+postgresql://postgres.mophtzlgugcplafyejfh:[zVKODAHzdgAY18z7]@aws-1-eu-west-1.pooler.supabase.com:6543/postgres
+                                           ^                 ^
+                                       REMOVE BRACKETS!
+
+✅ CORRECT (what you need):
+postgresql://postgres.mophtzlgugcplafyejfh:zVKODAHzdgAY18z7@aws-1-eu-west-1.pooler.supabase.com:6543/postgres
+                                           ^                ^
+                                        NO BRACKETS!
+
+================================
+📝 STEPS TO FIX IN RENDER:
+================================
+
+1. Go to: https://dashboard.render.com
+2. Click: dgh-patient-feedback-api
+3. Click: Environment (left sidebar)
+4. Find: DATABASE_URL
+5. Click: Edit (pencil icon)
+6. Replace with:
+
+postgresql://postgres.mophtzlgugcplafyejfh:zVKODAHzdgAY18z7@aws-1-eu-west-1.pooler.supabase.com:6543/postgres
+
+7. Click: Save Changes
+8. Wait: 2-3 minutes for redeploy
+9. Check: Logs tab for "Application startup complete"
+
+================================
+⚠️ IMPORTANT:
+================================
+
+The brackets [ ] are just placeholders in Supabase's UI to show where the password goes.
+You must REMOVE them and use ONLY the password itself!
+
+Password: zVKODAHzdgAY18z7
+NOT: [zVKODAHzdgAY18z7]
+
+================================
+✅ AFTER FIXING:
+================================
+
+Your backend should start successfully and you'll see in logs:
+✓ Application startup complete
+✓ Uvicorn running on http://0.0.0.0:10000
+
+Then test: https://your-service.onrender.com/health
