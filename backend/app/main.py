@@ -57,9 +57,15 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins for development
+    allow_origins=[
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "https://sparkling-sprinkles-24d64b.netlify.app",
+        "https://*.netlify.app",
+        "*"  # Allow all origins
+    ],
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all methods
+    allow_methods=["*"],
     allow_headers=["*"],
     expose_headers=["*"]
 )
