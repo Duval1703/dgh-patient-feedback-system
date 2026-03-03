@@ -29,6 +29,11 @@ def get_db():
 
 # ---------------------- Utility Functions ----------------------
 def verify_password(plain_password, hashed_password):
+    # Truncate password to 72 bytes for bcrypt compatibility
+    if isinstance(plain_password, str):
+        plain_password_bytes = plain_password.encode('utf-8')
+        if len(plain_password_bytes) > 72:
+            plain_password = plain_password_bytes[:72].decode('utf-8', errors='ignore')
     return pwd_context.verify(plain_password, hashed_password)
 
 def create_access_token(data: dict, expires_delta: timedelta | None = None):
@@ -127,7 +132,13 @@ def register_patient(data: PatientCreate, db: Session = Depends(get_db)):
     if existing:
         raise HTTPException(status_code=400, detail="Email already registered")
 
-    hashed_password = pwd_context.hash(data.password)
+    # Truncate password to 72 bytes for bcrypt compatibility
+    password = data.password
+    if isinstance(password, str):
+        password_bytes = password.encode('utf-8')
+        if len(password_bytes) > 72:
+            password = password_bytes[:72].decode('utf-8', errors='ignore')
+    hashed_password = pwd_context.hash(password)
 
     new_patient = Patient(
         email=data.email,
