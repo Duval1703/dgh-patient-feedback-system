@@ -81,6 +81,10 @@ app.include_router(appointments_public_router, prefix="/appointments/public", ta
 app.include_router(medications_router, prefix="/medications", tags=["Medications"])
 app.include_router(statistics_router)
 
+@app.get("/")
+def root():
+    return {"message": "DGH Care API", "status": "running", "health_endpoint": "/health"}
+
 @app.get("/health")
 def health_check():
     return {"status": "healthy", "service": "DGH Care API"}

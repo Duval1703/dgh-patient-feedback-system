@@ -9,15 +9,41 @@ from passlib.context import CryptContext
 from pydantic import BaseModel
 from db.models import Doctor, Patient, Admin
 from fastapi.security import OAuth2PasswordBearer
+import bcrypt as _bcrypt
+import os
 
 # ---------------------- Settings ----------------------
-SECRET_KEY = "your_secret_key"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+SECRET_KEY = os.environ.get("SECRET_KEY", "your_secret_key")
+ALGORITHM = os.environ.get("ALGORITHM", "HS256")
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.environ.get("ACCESS_TOKEN_EXPIRE_MINUTES", "30"))
 
 router = APIRouter()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/token")
+
+# ---------------------- Bcrypt Helper Functions (Python 3.14 Compatible) ----------------------
+def hash_password(password: str) -> str:
+    """Hash password using bcrypt directly"""
+    if isinstance(password, str):
+        password = password.encode('utf-8')
+    # Truncate to 72 bytes for bcrypt
+    if len(password) > 72:
+        password = password[:72]
+    return _bcrypt.hashpw(password, _bcrypt.gensalt()).decode('utf-8')
+
+def check_password(plain_password: str, hashed_password: str) -> bool:
+    """Verify password using bcrypt directly"""
+    if isinstance(plain_password, str):
+        plain_password = plain_password.encode('utf-8')
+    # Truncate to 72 bytes for bcrypt
+    if len(plain_password) > 72:
+        plain_password = plain_password[:72]
+    if isinstance(hashed_password, str):
+        hashed_password = hashed_password.encode('utf-8')
+    try:
+        return _bcrypt.checkpw(plain_password, hashed_password)
+    except Exception:
+        return False
 
 # ---------------------- Database Dependency ----------------------
 def get_db():
