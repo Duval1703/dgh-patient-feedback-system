@@ -1,0 +1,38 @@
+{
+  "common": {
+    "welcome": "M̀ bè lè",
+    "back": "Dè gè",
+    "submit": "Sɔ̀",
+    "cancel": "Kpà",
+    "save": "Gè",
+    "edit": "Sɔ̀",
+    "delete": "Sù",
+    "loading": "Ɓè...",
+    "search": "Sɔ̀",
+    "viewAll": "Tɔ̀ nyɔ́",
+    "close": "Kpà",
+    "confirm": "Kɔ́",
+    "requiredField": "Ɓè sɔ̀",
+    "success": "Ɓè lè",
+    "error": "Kpà",
+    "warning": "Kè",
+    "info": "Bè"
+  },
+  "auth": {
+    "signIn": "Dɔ̀",
+    "signUp": "Sɔ̀",
+    "email": "Email",
+    "password": "Bà",
+    "confirmPassword": "Kɔ́ bà",
+    "firstName": "Ǹ dɔ̀",
+    "lastName": "Ǹ sɔ̀",
+    "phoneNumber": "Ǹ tè",
+    "forgotPassword": "Kpà bà?",
+    "noAccount": "Ɓè sɔ̀ te?",
+    "haveAccount": "Ɓè sɔ̀?",
+    "welcomeBack": "M̀ bè lè",
+    "createAccount": "Sɔ̀ ǹ dɔ̀",
+    "healthcareCommunity": "Dɔ̀ ǹ sɔ̀",
+    "accessDashboard": "Dɔ̀ m̀ bè lè"
+  }
+}

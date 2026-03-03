@@ -1,0 +1,63 @@
+# Environment variables
+.env
+.env.local
+.env.production.local
+.env.development.local
+
+# Python Virtual Environments (CRITICAL - Do not commit!)
+backend/venv/
+backend/env/
+backend/ENV/
+venv/
+env/
+ENV/
+*.egg-info/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+dist/
+build/
+
+# Node modules (CRITICAL - Do not commit!)
+node_modules/
+Frontend/node_modules/
+Frontend/dist/
+Frontend/build/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-lock.yaml
+bun.lockb
+
+# Model files (Large AI models - DO NOT COMMIT!)
+backend/model/*.bin
+backend/model/*.model
+*.bin
+*.pth
+*.onnx
+*.h5
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+*.sqlite3
+
+# Temporary files
+tmp_rovodev_*
+
+# Package locks (keep package.json but not locks to avoid conflicts)
+package-lock.json
+yarn.lock
